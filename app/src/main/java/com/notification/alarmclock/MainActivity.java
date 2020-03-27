@@ -6,7 +6,9 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -31,7 +33,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	@Override
 	public void onClick(View view) {
 		EditText editText = findViewById(R.id.editText);
+		TextView textView = findViewById(R.id.setTime);
 		TimePicker timePicker = findViewById(R.id.timePicker);
+		DatePicker datePicker = findViewById(R.id.dataPicker);
 
 		// Set notificationId & text.
 		Intent intent = new Intent(MainActivity.this, AlarmReceiver.class);
@@ -46,11 +50,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 		switch (view.getId()) {
 			case R.id.setBtn:
+				int year = datePicker.getYear();
+				int month = datePicker.getMonth();
+				int day = datePicker.getDayOfMonth();
 				int hour = timePicker.getCurrentHour();
 				int minute = timePicker.getCurrentMinute();
 
-				// Create time.
+				// Create date and time.
 				Calendar startTime = Calendar.getInstance();
+				startTime.set(Calendar.DAY_OF_YEAR,year);
+				startTime.set(Calendar.DAY_OF_MONTH,month);
+				startTime.set(Calendar.DATE,day);
+
 				startTime.set(Calendar.HOUR_OF_DAY, hour);
 				startTime.set(Calendar.MINUTE, minute);
 				startTime.set(Calendar.SECOND, 0);
@@ -61,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 				alarm.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
 
 				Toast.makeText(this, "Done!", Toast.LENGTH_SHORT).show();
+				textView.setText(year+":"+month+":"+day+":"+hour+":"+minute);
 				break;
 
 			case R.id.cancelBtn:
