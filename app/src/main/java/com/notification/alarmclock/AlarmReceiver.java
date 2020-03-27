@@ -1,7 +1,5 @@
 package com.notification.alarmclock;
 
-
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -10,7 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 
 /**
- * Created by sara on 2017/12/28.
+ * Created by Book(NClock) on 2020/03/27.
  */
 
 public class AlarmReceiver extends BroadcastReceiver {
