@@ -16,7 +16,7 @@ package="com.notification.alarmclock">
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>
-    <receiver android:name="com.notification.alarmclock.AlarmReceiver" />
+    <receiver android:name="com.notification.alarmclock.AlarmReceiver" android:process=":remote"  />
 </application>
 
 </manifest>
